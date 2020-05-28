@@ -3,19 +3,18 @@ from .Deck import Deck
 from .functions_maker import functions_maker
 import random
 
-game_dir = "../arknights/"
+game_dir = "../princess_connect/"
 
-def arknights_setup():
+def princess_connect_setup():
     cards = read_cards(game_dir+"cards.txt")
-    enemies = read_cards(game_dir+"enemies.txt")
+    actions = read_cards(game_dir+"actions.txt")
 
     decks = [
-        Deck([Card(c) for c in enemies+enemies], 0, "E"),
-        Deck([], 1, "ED"),
-        Deck([Card(c) for c in cards+cards], 0, "d"),
-        Deck([], 2, "score"),
-        Deck([], 2, "F"),
+        Deck([Card(c) for c in actions+actions], 0, "d"),
+        Deck([Card(c) for c in cards+cards], 0, "D"),
         Deck([], 2, "f"),
+        Deck([], 2, "b"),
+        Deck([], 2, "H"),
         Deck([], 2, "h"),
         Deck([], 1, "e"),
     ]
@@ -24,7 +23,7 @@ def arknights_setup():
         "decks": dict([(d.name,d) for d in decks]),
         "functions": functions_maker([
             "d = mv d h",
-            "i <x> = mv h <x> f | s f -1 h 1",
+            "i <x> = mv h <x> f | s f -1 h 0",
             "I <x> = mv h <x> f | s f -1 a 0",
             "adv <x> = t f <x> a 1",
             "dec <x> = t f <x> a -1",
