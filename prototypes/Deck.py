@@ -20,4 +20,4 @@ class Deck:
             cards = "TopCard: {}".format(str(self.deck[0]))
         else:
             cards = "Cards: \n{}".format("\n".join([str(i)+": "+str(c) for i,c in enumerate(self.deck)]))
-        return "Deck: {}\n{}\n".format(self.name, cards)
+        return "Deck: {}  ({} left)\n{}\n".format(self.name, len(self.deck), cards)

@@ -6,33 +6,43 @@ import random
 game_dir = "../arknights2/"
 
 def arknights2_setup():
-    pack_ver1 = read_cards(game_dir+"cards.txt")
+    #pack_ver1 = read_cards(game_dir+"cards.txt")
     enemies = read_cards(game_dir+"enemies.txt")
     places = read_cards(game_dir+"places.txt")
-    bonus = read_cards(game_dir+"bonus.txt")
+    #bonus = read_cards(game_dir+"bonus.txt")
     objects = read_cards(game_dir+"objects.txt")
-    missions = read_cards(game_dir+"missions.txt")
+    #missions = read_cards(game_dir+"missions.txt")
+    orders = read_cards(game_dir+"orders.txt")
 
-    pack_basic = read_cards(game_dir+"pack_basic.txt")
-    pack_cycle1 = read_cards(game_dir+"pack_cycle1.txt")
-    pack_upgrades = read_cards(game_dir+"pack_upgrades.txt")
+    #pack_basic = read_cards(game_dir+"pack_basic.txt")
+    #pack_cost = read_cards(game_dir+"pack_cost.txt")
+    #pack_draw = read_cards(game_dir+"pack_draw.txt")
+    #pack_cycle1a = read_cards(game_dir+"pack_cycle1a.txt")
+    #pack_upgrades = read_cards(game_dir+"pack_upgrades.txt")
+    #pack_ver4 = read_cards(game_dir+"cards_ver4.txt")
 
-    cards = []
-    cards += pack_ver1
+    #cards = []
     #cards += pack_basic
-    #cards += pack_cycle1
-    #cards += pack_upgrades
+    #cards += pack_cost
+    #cards += pack_draw
+    #cards += pack_cycle1a
+    #cards += pack_ver4
+
+    cards = read_cards(game_dir + "cards.txt")
+    #cards = read_cards(game_dir+"cards_ver4_new.txt")
+    #cards = read_cards(game_dir+"cards_ver6.txt")
 
     # process cards
-    for i in range(len(cards)):
-        if "/" in cards[i]:
-            material = random.choice("铁铜煤石")
-            cards[i] += " {}+{}".format(material, material)
-        cards[i] += " " + random.choice(["<><>", "<>[]", "[][]"])
+    #for i in range(len(cards)):
+        # if "/" in cards[i]:
+        #     material = random.choice("铁铜煤石")
+        #     cards[i] += " {}+{}".format(material, material)
+        #cards[i] += " " + random.choice(["<><>", "<>[]", "[][]"])
 
     decks = [
-        Deck([Card(c+" ({}) ".format(random.randrange(4))) for c in enemies+enemies+enemies], 1, "D"),
-        Deck([Card(c) for c in cards+cards], 0, "d"),
+        Deck([Card(c+" ({}) ".format(random.randrange(4))) for c in enemies+enemies+enemies], 0, "D"),
+        Deck([Card(c) for c in cards+orders], 0, "d"),
+        Deck([Card(c) for c in objects], 0, "od"),
 
         Deck([], 2, "F1"),
         Deck([Card(places[0])], 2, "f1"),
@@ -42,6 +52,8 @@ def arknights2_setup():
         Deck([Card(places[2])], 2, "f3"),
         Deck([], 2, "F4"),
         Deck([Card(places[3])], 2, "f4"),
+
+        Deck([], 2, "ol"),
 
         Deck([], 2, "h"),
         Deck([], 1, "e"),
@@ -74,7 +86,8 @@ def arknights2_setup():
             "L2 <x> = mv F2 <x> E",
             "L3 <x> = mv F3 <x> E",
             "L4 <x> = mv F4 <x> E",
-            "init = map sh d D | 8 d",
+            "init = map sh d D od | 7 d ",
+            "R = 99 mv h d | 99 mv ol od | init",
                                 ]),
     }
 

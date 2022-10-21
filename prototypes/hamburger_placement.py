@@ -42,7 +42,7 @@ def hamburger_placement_setup():
     places = read_cards(game_dir+"places.txt")
     bonus = read_cards(game_dir + "bonus.txt")
     skills = read_cards(game_dir + "skills.txt")
-    trades = read_cards(game_dir + "trades.txt")
+    # trades = read_cards(game_dir + "trades.txt")
     #missions = [generate_mission() for i in range(50)]
     #trades = [str(i+1)+":"+j for i,j in enumerate(random.sample(["臭豆腐","腐乳","柠檬","老干妈","分数","临时工"],3))]
 
@@ -51,10 +51,11 @@ def hamburger_placement_setup():
         Deck([], 2, "bl"),
         Deck([Card(c) for c in skills], 0, "sd"),
         Deck([], 2, "sl"),
-        Deck([Card(c) for c in trades], 0, "td"),
-        Deck([], 2, "tl"),
-        Deck([Card(c) for c in places], 2, "p"),
-        Deck([], 2, "f"),
+        Deck([], 2, "ib"),
+        # Deck([Card(c) for c in trades], 0, "td"),
+        # Deck([], 2, "tl"),
+        # Deck([Card(c) for c in places], 2, "p"),
+        # Deck([], 2, "f"),
     ]
 
     board = {
@@ -67,7 +68,8 @@ def hamburger_placement_setup():
             "f <x> = mv c1 <x> f | mv c1d c1",
             "g <x> = mv c2 <x> f | mv c2d c2",
             "r = 99 mv i e | d",
-            "init = map sh bd td sd | 4 mv bd bl | 4 mv sd sl | 4 mv td tl",
+            "init = map sh bd sd | 4 mv bd bl | 4 mv sd sl | 2 mv bd ib",
+            "R = 99 mv sl sd | 99 mv bl bd | 99 mv ib bd | init",
         ]),
     }
 
